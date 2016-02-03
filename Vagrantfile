@@ -11,8 +11,8 @@ Vagrant.configure(2) do |config|
     end
   end
   if Vagrant.has_plugin?("vagrant-proxyconf")
-    config.proxy.http = "http://tkyproxy.intra.tis.co.jp:8080/"
-    config.proxy.https = "http://tkyproxy.intra.tis.co.jp:8080/"
+    config.proxy.http = "http://PROXY_HOST:PROXY_PORT/"
+    config.proxy.https = "http://PROXY_HOST:PROXY_PORT/"
     config.proxy.no_proxy = "localhost,127.0.0.1,10.0.0."
   end
 end
