@@ -1,0 +1,14 @@
+---
+- name: Set locale {{ locale }}
+  lineinfile: dest='/etc/sysconfig/i18n'
+              state=present
+              backrefs=yes
+              regexp='^LANG=\"en_US.UTF-8\"'
+              line='LANG=\"{{ locale }}\"'
+
+- name: Set locale {{ locale }} TODO for RHEL
+  lineinfile: dest='/etc/sysconfig/i18n'
+              state=present
+              backrefs=yes
+              regexp='^LANG=en_US.UTF-8'
+              line='LANG={{ locale }}'

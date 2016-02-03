@@ -1,0 +1,12 @@
+---
+- name: check timedatectl status
+  shell: "timedatectl status"
+  register: timezone_status
+  ignore_errors: true
+  changed_when: false
+
+- debug: msg="{{timezone_status.stdout}}"
+
+- name: set timezone
+  shell: "timedatectl set-timezone {{ timezone }}"
+  when: timezone_status.stdout.find('{{ timezone }}') == -1 

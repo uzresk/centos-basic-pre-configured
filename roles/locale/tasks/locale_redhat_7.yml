@@ -1,0 +1,10 @@
+---
+- name: check localectl status
+  shell: "localectl status"
+  register: locale_status
+  ignore_errors: true
+  changed_when: false
+
+- name: set locale
+  shell: "localectl set-locale LANG={{ locale }}"
+  when: locale_status.stdout.find('{{ locale }}') == -1

@@ -1,0 +1,23 @@
+---
+- name: Set /etc/localtime to {{ timezone }}
+  file: src=/usr/share/zoneinfo/{{ timezone }}
+        dest=/etc/localtime
+        state=link
+        owner=root
+        group=root
+        mode=644
+        force=yes
+- name: Set /etc/sysconfig/clock
+  lineinfile: >
+        dest=/etc/sysconfig/clock
+        state=present
+        backrefs=yes
+        regexp='^ZONE=.*$'
+        line='ZONE=\"{{ timezone }}\"'
+- name: Set /etc/sysconfig/clock
+  lineinfile: >
+        dest=/etc/sysconfig/clock
+        state=present
+        backrefs=no
+        insertafter='^ZONE=.*$'
+        line='UTC={{ utc }}'

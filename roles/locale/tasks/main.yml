@@ -1,0 +1,8 @@
+---
+- include: locale_redhat_6.yml tags=locale
+  when: ansible_os_family == 'RedHat'
+        and ansible_distribution_major_version == '6'
+
+- include: locale_redhat_7.yml tags=locale
+  when: ansible_os_family == 'RedHat'
+        and ansible_distribution_major_version == '7'
